@@ -49,6 +49,19 @@ class RecipeListActivity : AppCompatActivity() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         })
+
+        calories_floating_button.setOnClickListener {// Sort by calories and send sorted list to adapter
+            val sortedList = recipesList.sortedBy { recipe->
+                recipe.calories?.filter { it.isDigit()|| it == '.'}} //Get numerical value from mixed chars string
+            showList(sortedList)
+            sort_floating_menu.close(true)
+        }
+        fats_floating_button.setOnClickListener {// Sort by fats and send sorted list to adapter
+            val sortedList = recipesList.sortedBy { recipe->
+                recipe.fats?.filter { it.isDigit()|| it == '.'}}
+            showList(sortedList)
+            sort_floating_menu.close(true)
+        }
     }
     private fun showList(recipeList: List<RecipeData>) {
         val adapter = RecipeListAdapter(this, recipeList)
