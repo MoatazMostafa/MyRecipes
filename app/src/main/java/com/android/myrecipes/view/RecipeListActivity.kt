@@ -2,9 +2,7 @@ package com.android.myrecipes.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ListView
 import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import com.android.myrecipes.R
@@ -18,7 +16,6 @@ class RecipeListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_list)
         val repository= Repository(this.application)
-        val rv= lv
         get_recipes_button.setOnClickListener {
             var disposableData= repository.getRecipesList()
                 .subscribeOn(Schedulers.io())
@@ -26,18 +23,16 @@ class RecipeListActivity : AppCompatActivity() {
                 .subscribe(
                     { response->
                         if(response.isNotEmpty())
-                        showList(response,rv)
+                        showList(response)
                     },
                     {
                         val t=Toast.makeText(this,"Connection Error",Toast.LENGTH_SHORT)
                         t.show()
                     })
         }
-
     }
-    private fun showList(recipeList: List<RecipeData>,rv:ListView) {
-        val adapter = RecipeListAdapter(recipeList)
-        rv.adapter = adapter
-        rv.adapter?.notifyDataSetChanged()
+    private fun showList(recipeList: List<RecipeData>) {
+        val adapter = RecipeListAdapter(this, recipeList)
+        recipes_list_lv.adapter = adapter
     }
 }
