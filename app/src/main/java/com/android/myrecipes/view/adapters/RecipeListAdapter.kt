@@ -30,7 +30,7 @@ class RecipeListAdapter(context: Context,recipesList:List<RecipeData>) : BaseAda
         return myRecipesList[position]
     }
 
-    @SuppressLint("ViewHolder")
+    @SuppressLint("ViewHolder", "SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val rowView = inflater.inflate(R.layout.recipe_item, parent, false)
 
@@ -41,9 +41,9 @@ class RecipeListAdapter(context: Context,recipesList:List<RecipeData>) : BaseAda
         val recipeImageView: ImageView = rowView.findViewById(R.id.recipe_listItem_imageView)
 
         val recipe = getItem(position) as RecipeData
-        nameView.text = recipe.name
-        fatsView.text = recipe.fats
-        caloriesView.text = recipe.calories
+        nameView.text = "${nameView.text} : ${recipe.name}"
+        fatsView.text = "${fatsView.text} : ${recipe.fats}"
+        caloriesView.text = "${caloriesView.text} : ${recipe.calories}"
         Picasso.get().load(recipe.thumb).into(recipeImageView)
 
         recipeCardView.setOnClickListener {// when recipe selected send it to RecipeListActivity

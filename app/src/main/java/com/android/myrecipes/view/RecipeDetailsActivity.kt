@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.myrecipes.R
+import com.android.myrecipes.controller.Constants.RECIPES_PASS
 import com.android.myrecipes.model.RecipeData
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_recipe_details.*
@@ -13,7 +14,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_details)
-        val recipe=   intent.getSerializableExtra("recipe") as RecipeData
+        val recipe=   intent.getSerializableExtra(RECIPES_PASS) as RecipeData
         name_textView.text= "${name_textView.text} : ${recipe.name}"
         headline_textView.text= "${headline_textView.text} : ${recipe.headline}"
         calories_textView.text= "${calories_textView.text} : ${recipe.calories}"

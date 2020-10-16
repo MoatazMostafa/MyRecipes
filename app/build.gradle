@@ -48,7 +48,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.13'
     //Get image from URL
     implementation 'com.squareup.picasso:picasso:2.71828'
-
+    //Floating action button
     implementation 'com.github.clans:fab:1.6.4'
 
 
