@@ -13,4 +13,4 @@ Minimum SDK:23
    - Install apk on Android device
    - Run app
    
- Task note : Sorting list from floating action button
+ Task note : Sorting list from floating action buttons
